@@ -1,3 +1,4 @@
-FROM docker:latest
-RUN apk add py-pip jq openssh git
-RUN pip install awscli ecs-deploy aws-shell
+FROM alpine:latest
+RUN apk add docker openssh-client git jq py-pip
+RUN pip install -U pip awscli ecs-deploy aws-shell
+CMD ["aws-shell"]
