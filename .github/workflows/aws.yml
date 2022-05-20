@@ -1,0 +1,21 @@
+name: AWS and GITHUB
+on:
+  push
+env:
+  AWS_REGION : "ap-south-1"
+permissions:
+      id-token: write
+      contents: read
+jobs:
+  callerIdentity:
+    runs-on: ubuntu-latest
+    steps:
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: arn:aws:iam::522820335540:role/GitHub
+          role-session-name: github-alphaveer-docker-awscli
+          aws-region: ${{ env.AWS_REGION }}
+      - name:  test credentials
+        run: |
+          aws sts get-caller-identity
