@@ -1,8 +1,9 @@
 name: AWS and GITHUB
 on:
-  push
+  push:
+  workflow_dispatch:
 env:
-  AWS_REGION : "ap-south-1"
+  AWS_REGION : ${{ secrets.AWS_REGION }}
 permissions:
       id-token: write
       contents: read
@@ -13,8 +14,8 @@ jobs:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
-          role-to-assume: arn:aws:iam::522820335540:role/GitHub
-          role-session-name: github-alphaveer-docker-awscli
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          role-session-name: ${{ env.GITHUB_REPOSITORY }}
           aws-region: ${{ env.AWS_REGION }}
       - name:  test credentials
         run: |
