@@ -1,0 +1,26 @@
+name: Terrafom
+
+on:
+  workflow_call:
+    inputs:
+      workspace:
+        required: true
+        type: string
+
+permissions:
+      id-token: write
+      contents: read
+    
+jobs:
+  callerIdentity:
+    runs-on: ubuntu-latest
+    steps:
+      - name: configure aws credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
+          role-session-name: ${{ env.GITHUB_REPOSITORY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+      - name:  test credentials
+        run: |
+          aws sts get-caller-identity

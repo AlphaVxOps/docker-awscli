@@ -1,21 +1,18 @@
 name: AWS and GITHUB
+
 on:
   push:
   workflow_dispatch:
+
 permissions:
       id-token: write
       contents: read
+
 jobs:
   callerIdentity:
     runs-on: ubuntu-latest
     environment: dev
     steps:
-      - name: configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v1
+      - uses: ./.github/workflows/main
         with:
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-          role-session-name: ${{ env.GITHUB_REPOSITORY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-      - name:  test credentials
-        run: |
-          aws sts get-caller-identity
+          workspace: "dev"
