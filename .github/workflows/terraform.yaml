@@ -14,7 +14,9 @@ permissions:
 jobs:
   callerIdentity:
     runs-on: ubuntu-latest
-    environment: ${{ inputs.workspace }}
+    environment: 
+      name: dev
+      url: https://github.com
     steps:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
