@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   callerIdentity:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-22.04
     environment: dev
     steps:
       - uses: alphaveer/docker-awscli/.github/workflows/terraform.yaml@main
