@@ -13,6 +13,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: dev
     steps:
-      - uses: alphaveer/docker-awscli/.github/workflows/terraform
+      - uses: ./.github/workflows/terraform
         with:
           workspace: "dev"
