@@ -12,7 +12,4 @@ jobs:
   callerIdentity:
     runs-on: ubuntu-latest
     environment: dev
-    steps:
-      - uses: alphaveer/docker-awscli/.github/workflows/terraform.yaml@main
-        with:
-          workspace: "dev"
+    uses: alphaveer/docker-awscli/.github/workflows/terraform.yaml@main
