@@ -13,3 +13,4 @@ jobs:
     uses: alphaveer/docker-awscli/.github/workflows/terraform.yaml@master
     with:
       workspace: dev
+    secrets: inherit
