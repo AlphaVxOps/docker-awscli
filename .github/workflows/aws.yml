@@ -11,4 +11,4 @@ permissions:
 jobs:
   callerIdentity:
     environment: dev
-    uses: alphaveer/docker-awscli/.github/workflows/terraform.yaml
+    uses: alphaveer/docker-awscli/.github/workflows/terraform.yaml@master
