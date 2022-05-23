@@ -14,6 +14,7 @@ permissions:
 jobs:
   callerIdentity:
     runs-on: ubuntu-latest
+    environment: dev
     steps:
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v1
