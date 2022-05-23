@@ -1,6 +1,8 @@
 name: Terrafom
 
 on:
+  push:
+  workflow_dispatch:
   workflow_call:
     inputs:
       workspace:
@@ -14,8 +16,11 @@ permissions:
 jobs:
   callerIdentity:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        environment: [dev, prod, test]
     environment: 
-      name: ${{ inputs.workspace }}
+      name: ${{ matrix.environment }}
       url: https://github.com
     steps:
       - name: configure aws credentials
