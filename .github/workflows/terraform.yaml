@@ -15,7 +15,7 @@ jobs:
   callerIdentity:
     runs-on: ubuntu-latest
     environment: 
-      name: dev
+      name: ${{ inputs.workspace }}
       url: https://github.com
     steps:
       - name: configure aws credentials
@@ -28,3 +28,4 @@ jobs:
         run: |
           aws sts get-caller-identity
           aws s3 ls
+          env
