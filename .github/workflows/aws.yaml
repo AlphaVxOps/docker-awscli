@@ -41,7 +41,7 @@ jobs:
           env
 
       - name:  run terraform
-        uses: ./github/workflows/terraform.yaml
+        uses: ./.github/workflows/terraform.yaml
         with:
           workspace: test
           
