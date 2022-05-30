@@ -4,17 +4,13 @@ on:
   push:
   workflow_dispatch:
   workflow_call:
-    inputs:
-      workspace:
-        required: true
-        type: string
 
 permissions:
-      id-token: write
-      contents: read
+  id-token: write
+  contents: read
     
 jobs:
-  callerIdentity:
+  Terraform:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -24,23 +20,4 @@ jobs:
       name: ${{ matrix.environment }}
       url: https://github.com
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          role-to-assume: ${{ secrets.AWS_ROLE_ARN }}
-          role-session-name: ${{ env.GITHUB_REPOSITORY }}
-          aws-region: ${{ secrets.AWS_REGION }}
       
-      - name:  test credentials
-        run: |
-          pwd
-          find ./
-
-      - name:  run terraform
-        uses: ./.github/workflows/terraform
-        with:
-          workspace: test
-          
