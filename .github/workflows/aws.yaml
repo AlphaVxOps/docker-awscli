@@ -36,9 +36,8 @@ jobs:
       
       - name:  test credentials
         run: |
-          aws sts get-caller-identity
-          aws s3 ls
-          env
+          ls -la
+          find ./
 
       - name:  run terraform
         uses: ./.github/workflows/terraform.yaml
