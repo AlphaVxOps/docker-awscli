@@ -20,15 +20,6 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: plan
-          
-      - name: Display structure of downloaded files
-        run: ls -R 
-      
-      - name: Decompress TF Plan artifact
-        run: unzip plan.zip
-      
-      - name: Decompress TF Plan artifact
-        run: unzip plan.zip
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2.0.0
