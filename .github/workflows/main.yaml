@@ -6,27 +6,33 @@ on:
 jobs:
   plan_dev:
     uses: alphaveer/docker-awscli/.github/workflows/plan.yaml@master
+    with:
+      gh_environment: dev
 
   deploy_dev:
     needs: plan_dev
     uses: alphaveer/docker-awscli/.github/workflows/apply.yaml@master
     with:
-      gh_environment: Development
+      gh_environment: dev
 
-  plan_uat:
+  plan_test:
     uses: alphaveer/docker-awscli/.github/workflows/plan.yaml@master
+    with:
+      gh_environment: test
 
-  deploy_uat:
-    needs: [plan_uat, deploy_dev]
+  deploy_test:
+    needs: [plan_test, deploy_dev]
     uses: alphaveer/docker-awscli/.github/workflows/apply.yaml@master
     with:
-      gh_environment: UserAcceptanceTesting
+      gh_environment: test
 
   plan_prod:
     uses: alphaveer/docker-awscli/.github/workflows/plan.yaml@master
+    with:
+      gh_environment: prod
 
   deploy_prod:
-    needs: [plan_prod, deploy_uat]
+    needs: [plan_prod, deploy_test]
     uses: alphaveer/docker-awscli/.github/workflows/apply.yaml@master
     with:
-      gh_environment: Production
+      gh_environment: prod
