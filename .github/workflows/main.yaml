@@ -23,7 +23,7 @@ jobs:
       gh_environment: UserAcceptanceTesting
 
   plan_prod:
-    uses: alphaveer/docker-awscli/.github/workflows/planssss.yaml@master
+    uses: alphaveer/docker-awscli/.github/workflows/plan.yaml@master
 
   deploy_prod:
     needs: [plan_prod, deploy_uat]
