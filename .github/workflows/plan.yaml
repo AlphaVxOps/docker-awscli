@@ -58,7 +58,7 @@ jobs:
         run: exit 1
       
       - name: Compress plan & tflock
-        run: zip -r plan.zip plan.tfplan .terraform.lock.hcl
+        run: zip -r plan.zip ./*
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
