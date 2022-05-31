@@ -1,31 +1,32 @@
 name: "Terraform"
 on:
+  push:
   workflow_dispatch:
 
 jobs:
   plan_dev:
-    uses: alphaveer/docker-awscli/.github/workflows/plan.yml@master
+    uses: alphaveer/docker-awscli/.github/workflows/plan.yaml@master
 
   deploy_dev:
     needs: plan_dev
-    uses: alphaveer/docker-awscli/.github/workflows/apply.yml@master
+    uses: alphaveer/docker-awscli/.github/workflows/apply.yaml@master
     with:
       gh_environment: Development
 
   plan_uat:
-    uses: alphaveer/docker-awscli/.github/workflows/plan.yml@master
+    uses: alphaveer/docker-awscli/.github/workflows/plan.yaml@master
 
   deploy_uat:
     needs: [plan_uat, deploy_dev]
-    uses: alphaveer/docker-awscli/.github/workflows/apply.yml@master
+    uses: alphaveer/docker-awscli/.github/workflows/apply.yaml@master
     with:
       gh_environment: UserAcceptanceTesting
 
   plan_prod:
-    uses: alphaveer/docker-awscli/.github/workflows/apply.yml@master
+    uses: alphaveer/docker-awscli/.github/workflows/planssss.yaml@master
 
   deploy_prod:
     needs: [plan_prod, deploy_uat]
-    uses: alphaveer/docker-awscli/.github/workflows/apply.yml@master
+    uses: alphaveer/docker-awscli/.github/workflows/apply.yaml@master
     with:
       gh_environment: Production
