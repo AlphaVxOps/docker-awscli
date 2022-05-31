@@ -16,6 +16,7 @@ jobs:
       gh_environment: dev
 
   plan_test:
+    needs: [plan_dev]
     uses: alphaveer/docker-awscli/.github/workflows/plan.yaml@master
     with:
       gh_environment: test
@@ -27,6 +28,7 @@ jobs:
       gh_environment: test
 
   plan_prod:
+    needs: [plan_test]
     uses: alphaveer/docker-awscli/.github/workflows/plan.yaml@master
     with:
       gh_environment: prod
