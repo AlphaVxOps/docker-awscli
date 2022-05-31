@@ -1,0 +1,36 @@
+name: "Apply"
+on:
+  workflow_call:
+    inputs:
+      gh_environment:
+        description: 'Specifies the GitHub deployment environment.'
+        required: false
+        type: string
+        default: null
+
+jobs:
+  apply-plan:
+    runs-on: ubuntu-latest
+    environment: ${{ inputs.gh_environment }}
+    env:
+      TF_WORKSPACE: ${{ inputs.gh_environment }}
+  
+    steps:
+      - name: Download Artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: plan
+          path: plan.zip
+
+      - name: Decompress TF Plan artifact
+        run: unzip plan.zip
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v2.0.0
+
+      - name: Terraform Init
+        id: init
+        run: terraform init
+
+      - name: Terraform Apply
+        run: terraform apply plan.tfplan
