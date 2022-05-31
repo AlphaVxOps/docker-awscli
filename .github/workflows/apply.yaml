@@ -21,6 +21,9 @@ jobs:
         with:
           name: plan
 
+      - name: Unzip plan & lock
+        run: unzip plan.zip
+
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2.0.0
 

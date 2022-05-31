@@ -56,10 +56,13 @@ jobs:
       - name: Terraform Plan Status
         if: steps.plan.outcome == 'failure'
         run: exit 1
+      
+      - name: Compress plan & tflock
+        run: zip -r plan.zip plan.tfplan .terraform.lock.hcl
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v3
         with:
           name: "plan"
-          path: "plan.tfplan"
+          path: "plan.zip"
           retention-days: 5
