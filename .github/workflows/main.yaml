@@ -4,12 +4,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  plan_dev:
+  Plan - Development:
     uses: alphaveer/docker-awscli/.github/workflows/plan.yaml@master
     with:
       gh_environment: dev
 
-  deploy_dev:
+  Deploy - Development:
     needs: [plan_dev]
     uses: alphaveer/docker-awscli/.github/workflows/apply.yaml@master
     with:
