@@ -4,35 +4,35 @@ on:
   workflow_dispatch:
 
 jobs:
-  Plan - Development:
+  Plan_Development:
     uses: alphaveer/docker-awscli/.github/workflows/plan.yaml@master
     with:
       gh_environment: dev
 
-  Deploy - Development:
-    needs: [plan_dev]
+  Deploy_Development:
+    needs: [Plan_Development]
     uses: alphaveer/docker-awscli/.github/workflows/apply.yaml@master
     with:
       gh_environment: dev
 
-  plan_test:
+  Plan_Test:
     uses: alphaveer/docker-awscli/.github/workflows/plan.yaml@master
     with:
       gh_environment: test
 
-  deploy_test:
-    needs: [plan_test]
+  Deploy_Test:
+    needs: [Plan_Test]
     uses: alphaveer/docker-awscli/.github/workflows/apply.yaml@master
     with:
       gh_environment: test
 
-  plan_prod:
+  Plan_Prod:
     uses: alphaveer/docker-awscli/.github/workflows/plan.yaml@master
     with:
       gh_environment: prod
 
-  deploy_prod:
-    needs: [plan_prod]
+  Deploy_Prod:
+    needs: [Plan_Prod]
     uses: alphaveer/docker-awscli/.github/workflows/apply.yaml@master
     with:
       gh_environment: prod
